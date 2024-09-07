@@ -1,0 +1,27 @@
+const yesBtn = document.getElementById('yes-btn');
+const noBtn = document.getElementById('no-btn');
+const resultDiv = document.getElementById('result');
+const lights = document.querySelectorAll('.light');
+const yesSound = document.getElementById('yes-sound');
+
+yesBtn.addEventListener('click', () => {
+	resultDiv.innerHTML = 'You did it! You confessed your love!';
+	lights.forEach(light => light.classList.add('glow'));
+	yesSound.play();
+	setTimeout(() => {
+		lights.forEach(light => light.classList.remove('glow'));
+	}, 3000);
+});
+
+noBtn.addEventListener('click', () => {
+	setTimeout(() => {
+		resultDiv.innerHTML = 'Wait, what? You meant to say YES!';
+	}, 1000);
+	yesBtn.click(); // simulate a click on the yes button
+	setTimeout(() => {
+		lights.forEach(light => light.classList.add('glow'));
+	}, 2000);
+	setTimeout(() => {
+		lights.forEach(light => light.classList.remove('glow'));
+	}, 5000);
+});
